@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>res/logo.png</file>
-        <file>res/i18n_zh.qm</file>
-        <file>res/i18n_zh.ts</file>
+        <file>res/i18n/i18n_zh.qm</file>
     </qresource>
 </RCC>

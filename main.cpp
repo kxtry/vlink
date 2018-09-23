@@ -1,18 +1,23 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 
+#include "src/systemtray.h"
+
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     QString lang = QLocale::system().name();
     QTranslator translator;
-    if (translator.load(":/res/i18n_zh.qm")) {
+    if (translator.load("i18n_" + QLocale::system().name(), ":/res/i18n/")) {
         QCoreApplication::installTranslator(&translator);
     }
+
+    SystemTray tray;
+    tray.showSplash();
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
