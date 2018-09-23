@@ -1,12 +1,13 @@
-#include "systemtray.h"
-
 #include <QApplication>
 #include <QSplashScreen>
 #include <QMenu>
 #include <QTimer>
 #include <QMessageBox>
+#include <QDebug>
 
-SystemTray::SystemTray(QObject *parent)
+#include "KxSystemTray.h"
+
+KxSystemTray::KxSystemTray(QObject *parent)
     : QObject(parent)
 {
     tray = new QSystemTrayIcon(this);
@@ -16,58 +17,51 @@ SystemTray::SystemTray(QObject *parent)
         QAction *action = new QAction(menu);
         action->setText(tr("E&xit"));
         menu->addAction(action);
-        connect(action, &QAction::triggered, this, &SystemTray::exitApp);
+        connect(action, &QAction::triggered, this, &KxSystemTray::exitApp);
     }
 
     tray->setContextMenu(menu);
     tray->setIcon(QIcon(":/res/logo.png"));
-    tray->setToolTip(tr("WayPal在线教育专家"));
+    tray->setToolTip(tr("VLink's remote assistant helper."));
     tray->show();
-    connect(tray, &QSystemTrayIcon::activated, this, &SystemTray::activeTray);//点击托盘，执行相应的动作
-
-    QPixmap pixmap(":/res/splash.png");
-    splash = new QSplashScreen(pixmap);
+    connect(tray, &QSystemTrayIcon::activated, this, &KxSystemTray::activeTray);
+    tray->installEventFilter(this);
 }
 
-SystemTray::~SystemTray()
+KxSystemTray::~KxSystemTray()
 {
     delete menu;
     delete tray;
 }
 
-void SystemTray::showSplash()
+void KxSystemTray::activeTray(QSystemTrayIcon::ActivationReason reason)
 {
-    splash->show();
-    QTimer::singleShot(1000*3, this, &SystemTray::splashTimeout);
-}
-
-void SystemTray::activeTray(QSystemTrayIcon::ActivationReason reason)
-{
+    qDebug() << "reason:" << reason;
     switch (reason)
     {
     case QSystemTrayIcon::Context:
         showMenu();
         break;
     case QSystemTrayIcon::DoubleClick:
-        showSplash();
         break;
     case QSystemTrayIcon::Trigger:
         break;
     }
 }
 
-void SystemTray::showMenu()
+void KxSystemTray::showMenu()
 {
     menu->show();
 }
 
-
-void SystemTray::splashTimeout()
+bool KxSystemTray::eventFilter(QObject *obj, QEvent *event)
 {
-    splash->hide();
+    qDebug() << "obj" << obj;
+    qDebug() << "event" << event->type();
 }
 
-void SystemTray::exitApp()
+
+void KxSystemTray::exitApp()
 {
     QMessageBox msgBox;
     msgBox.setText(tr("The program will exit."));
@@ -81,7 +75,7 @@ void SystemTray::exitApp()
     QApplication::exit(0);
 }
 
-void SystemTray::showMessage()
+void KxSystemTray::showMessage()
 {
     tray->showMessage("Information",//消息窗口标题
         "There is a new message!",//消息内容

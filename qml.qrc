@@ -1,7 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/main.qml</file>
+        <file>main.qml</file>
         <file>res/logo.png</file>
-        <file>res/i18n/i18n_zh.qm</file>
+        <file>i18n/i18n_zh.qm</file>
+        <file>basic/KxFileDialog.qml</file>
+        <file>basic/KxFilePage.qml</file>
+        <file>basic/KxMenu.qml</file>
+        <file>basic/KxMessageBox.qml</file>
+        <file>basic/KxTheme.qml</file>
     </qresource>
 </RCC>

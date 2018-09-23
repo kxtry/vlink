@@ -4,9 +4,9 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../../main.qml" line="102"/>
-        <source>Remove</source>
-        <translation>Entfernen</translation>
+        <location filename="../../qml/main.qml" line="102"/>
+        <source>Hello</source>
+        <translation>你好，世界</translation>
     </message>
 </context>
 <context>
