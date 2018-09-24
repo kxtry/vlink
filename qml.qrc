@@ -9,5 +9,6 @@
         <file>basic/KxMessageBox.qml</file>
         <file>basic/KxTheme.qml</file>
         <file>i18n/i18n_zh.ts</file>
+        <file>setting/KxSetting.qml</file>
     </qresource>
 </RCC>

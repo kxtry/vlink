@@ -19,13 +19,11 @@ KxSystemTray::KxSystemTray(QObject *parent)
         menu->addAction(action);
         connect(action, &QAction::triggered, this, &KxSystemTray::exitApp);
     }
-
     tray->setContextMenu(menu);
     tray->setIcon(QIcon(":/res/logo.png"));
     tray->setToolTip(tr("VLink's remote assistant helper."));
     tray->show();
     connect(tray, &QSystemTrayIcon::activated, this, &KxSystemTray::activeTray);
-    tray->installEventFilter(this);
 }
 
 KxSystemTray::~KxSystemTray()
@@ -54,13 +52,6 @@ void KxSystemTray::showMenu()
     menu->show();
 }
 
-bool KxSystemTray::eventFilter(QObject *obj, QEvent *event)
-{
-    qDebug() << "obj" << obj;
-    qDebug() << "event" << event->type();
-}
-
-
 void KxSystemTray::exitApp()
 {
     QMessageBox msgBox;
@@ -73,12 +64,4 @@ void KxSystemTray::exitApp()
         return;
     }
     QApplication::exit(0);
-}
-
-void KxSystemTray::showMessage()
-{
-    tray->showMessage(tr("Information"),
-                      tr("There is a new message!"),
-                      QSystemTrayIcon::MessageIcon::Information,
-                      5000);
 }

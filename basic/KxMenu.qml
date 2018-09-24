@@ -11,7 +11,6 @@ Menu {
 
     Material.background: g_theme.alphaLv4
     Component.onCompleted: {
-        //菜单必须设置背景宽度，才能正确显示文本，这应该是它的一个BUG。
         if(menuWidth < 100){
             menuWidth = 100;
         }

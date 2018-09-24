@@ -1,5 +1,5 @@
-﻿#include <QStandardPaths>
-#include "KxUtils.h"
+﻿#include "KxUtils.h"
+#include <QStandardPaths>
 
 KxUtils::KxUtils(QObject *parent)
     : QObject(parent)

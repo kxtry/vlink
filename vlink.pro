@@ -1,6 +1,6 @@
 QT += quick
 QT += widgets
-QT += qml xmlpatterns
+QT += qml xmlpatterns bluetooth
 
 CONFIG += c++11
 
@@ -16,13 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    basic/KxUtils.h \
     basic/KxSystemTray.h \
-    basic/KxUtils.h
+    basic/KxBluetooth.h \
+    basic/KxDesktopServices.h \
+    basic/KxFileSearch.h \
+    basic/KxQuickView.h
 
 SOURCES += \
         main.cpp \
-        basic/KxSystemTray.cpp \
-        basic/KxUtils.cpp
+        basic/KxUtils.cpp \
+    basic/KxSystemTray.cpp \
+    basic/KxBluetooth.cpp \
+    basic/KxDesktopServices.cpp \
+    basic/KxFileSearch.cpp \
+    basic/KxQuickView.cpp
 
 RESOURCES += qml.qrc
 
@@ -46,5 +54,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    basic/KxTheme.qml
+    basic/KxTheme.qml \
+    setting/KxSetting.qml
 
