@@ -15,7 +15,7 @@ Window {
     //flags: Qt.FramelessWindowHint
 
     Component.onCompleted: {
-        for(var i=0; i< 80; i++) {
+        for(var i=0; i< 50; i++) {
             listModel.append({name:"a"+i})
         }
     }
