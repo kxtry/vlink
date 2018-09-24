@@ -1,4 +1,6 @@
-﻿import QtQuick 2.6
+﻿import QtQuick 2.0
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 
 QtObject {
     property color themeColor:Material.color(Material.Green)
@@ -28,6 +30,5 @@ QtObject {
     property color alphaLv3: '#5FFFFFFF'
     property color alphaLv4: '#7FFFFFFF'
     property color alphaLv5: '#9FFFFFFF'
-
 
 }

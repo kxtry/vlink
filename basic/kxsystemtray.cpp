@@ -65,7 +65,7 @@ void KxSystemTray::exitApp()
 {
     QMessageBox msgBox;
     msgBox.setText(tr("The program will exit."));
-    msgBox.setInformativeText(tr("如果退出可能会影响上课质量，建议不要退出。"));
+    msgBox.setInformativeText(tr("Exit now"));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
@@ -77,8 +77,8 @@ void KxSystemTray::exitApp()
 
 void KxSystemTray::showMessage()
 {
-    tray->showMessage("Information",//消息窗口标题
-        "There is a new message!",//消息内容
-        QSystemTrayIcon::MessageIcon::Information,//消息窗口图标
-        5000);//消息窗口显示时长
+    tray->showMessage(tr("Information"),
+                      tr("There is a new message!"),
+                      QSystemTrayIcon::MessageIcon::Information,
+                      5000);
 }

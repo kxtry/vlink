@@ -27,7 +27,7 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 lupdate_only{
-    SOURCES = *.qml
+    SOURCES += *.qml
 }
 
 
