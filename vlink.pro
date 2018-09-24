@@ -21,7 +21,8 @@ HEADERS += \
     basic/KxBluetooth.h \
     basic/KxDesktopServices.h \
     basic/KxFileSearch.h \
-    basic/KxQuickView.h
+    basic/KxQuickView.h \
+    basic/KxFileContent.h
 
 SOURCES += \
         main.cpp \
@@ -30,7 +31,8 @@ SOURCES += \
     basic/KxBluetooth.cpp \
     basic/KxDesktopServices.cpp \
     basic/KxFileSearch.cpp \
-    basic/KxQuickView.cpp
+    basic/KxQuickView.cpp \
+    basic/KxFileContent.cpp
 
 RESOURCES += qml.qrc
 

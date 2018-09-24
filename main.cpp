@@ -8,6 +8,7 @@
 #include "basic/KxFileSearch.h"
 #include "basic/KxBluetooth.h"
 #include "basic/KxDesktopServices.h"
+#include "basic/KxFileContent.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
     KxUtils utils;
     KxSystemTray tray;
 
+    qmlRegisterType<KxFileContent>("KxFileContent", 1,0, "KxFileContent");
     qmlRegisterType<KxFileSearch>("KxFileSearch", 1,0, "KxFileSearch");
     qmlRegisterType<KxBluetooth>("KxBluetooth", 1,0, "KxBluetooth");
     qmlRegisterType<KxDesktopServices>("KxDesktopServices", 1,0, "KxDesktopServices");
