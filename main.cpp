@@ -10,8 +10,31 @@
 #include "basic/KxDesktopServices.h"
 #include "basic/KxFileContent.h"
 
+#include <QRegExp>
+#include <QDebug>
+
+void test()
+{
+    {
+        QRegExp rx("Host\\s([^\\r|\\n]*)");
+        QStringList list;
+        int pos = 0;
+        KxFileContent fc;
+        fc.setFileName("H:\\tools\\kxtry\\myssh\\config");
+        QString str = fc.getContent();
+        //str = "Host a2\r\nHost b2\r\nHost c3";
+        while ((pos = rx.indexIn(str, pos)) != -1) {
+              list << rx.cap(1);
+              pos += rx.matchedLength();
+        }
+        qDebug() << "list:" << list;
+    }
+    exit(0);
+}
+
 int main(int argc, char *argv[])
 {
+    test();
     QApplication::setApplicationName("vlink");
     QApplication::setOrganizationName("kxtry");
     QApplication::setOrganizationDomain("kxtry.com");
