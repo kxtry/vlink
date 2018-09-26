@@ -22,7 +22,8 @@ HEADERS += \
     basic/KxDesktopServices.h \
     basic/KxFileSearch.h \
     basic/KxQuickView.h \
-    basic/KxFileContent.h
+    basic/KxFileContent.h \
+    basic/KxRegexp.h
 
 SOURCES += \
         main.cpp \
@@ -32,7 +33,8 @@ SOURCES += \
     basic/KxDesktopServices.cpp \
     basic/KxFileSearch.cpp \
     basic/KxQuickView.cpp \
-    basic/KxFileContent.cpp
+    basic/KxFileContent.cpp \
+    basic/KxRegexp.cpp
 
 RESOURCES += qml.qrc
 

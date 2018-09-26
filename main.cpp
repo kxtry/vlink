@@ -9,6 +9,7 @@
 #include "basic/KxBluetooth.h"
 #include "basic/KxDesktopServices.h"
 #include "basic/KxFileContent.h"
+#include "basic/KxRegexp.h"
 
 #include <QRegExp>
 #include <QDebug>
@@ -22,6 +23,9 @@ void test()
         KxFileContent fc;
         fc.setFileName("H:\\tools\\kxtry\\myssh\\config");
         QString str = fc.getContent();
+        rx.indexIn(str);
+        QStringList oks = rx.capturedTexts();
+        qDebug() << "oks:" << oks;
         //str = "Host a2\r\nHost b2\r\nHost c3";
         while ((pos = rx.indexIn(str, pos)) != -1) {
               list << rx.cap(1);
@@ -32,9 +36,18 @@ void test()
     exit(0);
 }
 
+void test2()
+{
+    KxRegexp rx;
+    rx.setPattern("Host\\s([^\\r|\\n]*)");
+    QStringList cts = rx.capturedTexts("Host a2\r\nHost b2\r\nHost c3");
+    qDebug() << "cts:" << cts;
+    exit(0);
+}
+
 int main(int argc, char *argv[])
 {
-    test();
+    //test2();
     QApplication::setApplicationName("vlink");
     QApplication::setOrganizationName("kxtry");
     QApplication::setOrganizationDomain("kxtry.com");
@@ -51,6 +64,7 @@ int main(int argc, char *argv[])
     KxUtils utils;
     KxSystemTray tray;
 
+    qmlRegisterType<KxRegexp>("KxRegexp", 1,0, "KxRegexp");
     qmlRegisterType<KxFileContent>("KxFileContent", 1,0, "KxFileContent");
     qmlRegisterType<KxFileSearch>("KxFileSearch", 1,0, "KxFileSearch");
     qmlRegisterType<KxBluetooth>("KxBluetooth", 1,0, "KxBluetooth");

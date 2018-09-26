@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import KxFileContent 1.0
+import KxRegexp 1.0
 
 
 import "basic"
@@ -16,14 +17,19 @@ Window {
 
     Component.onCompleted: {
         var content = config.content
-        var line = content.split("\r\n")
-        if(line.length === 1) {
-            line = content.split("\n")
+        var sshs = regex.capturedTexts(content)
+        console.log(sshs)
+        for(var i = 0; i < sshs.length; i++) {
+            var items = sshs[i].split(' ')
+            for(var j = 0; j < items.length; j++) {
+                listModel.append({name:items[j]})
+            }
         }
-        console.log(line)
-        for(var i = 0; i < line.count; i++) {
-            listModel.append({name:"a"+i})
-        }
+    }
+
+    KxRegexp {
+        id: regex
+        pattern: "Host\\s([^\\r|\\n]*)"
     }
 
     KxFileContent {
